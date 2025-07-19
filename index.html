@@ -3,32 +3,509 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Luxury of Happiness</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <title>The Luxury of Happiness - Personal Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; padding: 0; min-height: 100vh; font-family: 'Montserrat', Arial, sans-serif; background: #f8f7f3; color: #222; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-    .container { text-align: center; padding: 2rem; }
-    h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 1px; }
-    p { font-size: 1.2rem; color: #666; margin-bottom: 2rem; }
-    .contact-btn { display: inline-block; padding: 0.75rem 2rem; font-size: 1rem; border: none; border-radius: 25px; background: #222; color: #fff; cursor: pointer; transition: background 0.2s; margin-bottom: 2rem; text-decoration: none; }
-    .contact-btn:hover { background: #444; }
-    .socials { display: flex; justify-content: center; gap: 1.2rem; margin-top: 1rem; }
-    .social-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #eee; color: #222; text-decoration: none; font-size: 1.3rem; transition: background 0.2s, color 0.2s; }
-    .social-btn:hover { background: #222; color: #fff; }
-    @media (max-width: 600px) { h1 { font-size: 2rem; } .container { padding: 1rem; } }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f8f7f3 0%, #f5f5f0 50%, #f0f0eb 100%);
+      color: #2c2c2c;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 0 2rem;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #d4af37, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      color: #666;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .concept-explanation {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .concept-explanation h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #d4af37;
+    }
+
+    .concept-explanation p {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    .blog-posts {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #2c2c2c;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .post-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+    }
+
+    .post-category {
+      font-size: 0.9rem;
+      color: #d4af37;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #2c2c2c;
+      line-height: 1.3;
+    }
+
+    .post-excerpt {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .post-date {
+      color: #999;
+    }
+
+    .read-more {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: #b8941f;
+    }
+
+    .categories {
+      padding: 4rem 0;
+      background: rgba(255, 255, 255, 0.5);
+      margin: 2rem 0;
+      border-radius: 12px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .category-card {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .category-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #2c2c2c;
+    }
+
+    .category-desc {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .about-section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .about-placeholder {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4rem 2rem;
+      border-radius: 12px;
+      margin: 2rem 0;
+      border: 2px dashed rgba(212, 175, 55, 0.3);
+    }
+
+    .about-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #2c2c2c;
+    }
+
+    .about-placeholder p {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .happiness-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #d4af37;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: rgba(212, 175, 55, 0.1);
+      border-radius: 8px;
+      border-left: 4px solid #d4af37;
+    }
+
+    .newsletter {
+      padding: 4rem 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      margin: 2rem 0;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .newsletter h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #2c2c2c;
+    }
+
+    .newsletter p {
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      padding: 1rem;
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #2c2c2c;
+      font-size: 1rem;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .newsletter-input::placeholder {
+      color: #999;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #d4af37, #ffd700);
+      color: #2c2c2c;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      color: #666;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-link {
+      color: #d4af37;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: #b8941f;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.5rem;
+      }
+      
+      .tagline {
+        font-size: 1.1rem;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .newsletter-input {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
   </style>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>✨</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f8f7f3'/><circle cx='50' cy='50' r='35' fill='%23d4af37'/><circle cx='50' cy='50' r='25' fill='%23f8f7f3'/><circle cx='50' cy='50' r='15' fill='%23ffd700'/></svg>">
 </head>
 <body>
   <div class="container">
-    <h1>The Luxury of Happiness</h1>
-    <p>Elevate your everyday.</p>
-    <a href="#" class="contact-btn">Contact</a>
-    <div class="socials">
-      <a href="#" class="social-btn" title="Instagram" aria-label="Instagram">I</a>
-      <a href="#" class="social-btn" title="Facebook" aria-label="Facebook">F</a>
-      <a href="#" class="social-btn" title="Twitter" aria-label="Twitter">T</a>
+    <header>
+      <h1 class="logo">The Luxury of Happiness</h1>
+      <p class="tagline">Exploring the dual nature of joy - both priceless and costly</p>
+    </header>
+
+    <div class="concept-explanation">
+      <h2>✨ The Paradox of Happiness</h2>
+      <p>"The Luxury of Happiness" is a play on words that captures the beautiful contradiction at the heart of human joy. Luxury suggests both lavishness and high cost, while happiness is often seen as both a fundamental right and something elusive and precious.</p>
+      <p>Happiness can be as free as a child's laughter or as costly as years of therapy. It can uplift us instantly or require years of work to achieve. This blog explores the many facets of happiness - when it comes easily, when it's hard-won, and everything in between.</p>
     </div>
+
+    <section class="blog-posts">
+      <h2 class="section-title">Latest Reflections</h2>
+      <div class="posts-grid">
+        <div class="post-card">
+          <div class="post-category">Free Joy</div>
+          <h3 class="post-title">The Happiness of a Perfect Cup of Coffee</h3>
+          <p class="post-excerpt">Sometimes the most luxurious happiness costs less than $5. A perfectly brewed cup of coffee on a quiet morning can feel more precious than gold...</p>
+          <div class="post-meta">
+            <span class="post-date">March 15, 2024</span>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </div>
+        
+        <div class="post-card">
+          <div class="post-category">Costly Peace</div>
+          <h3 class="post-title">The Price of Inner Peace</h3>
+          <p class="post-excerpt">Sometimes happiness requires investment - therapy, meditation retreats, or simply the courage to make difficult life changes. The cost of staying the same is often higher...</p>
+          <div class="post-meta">
+            <span class="post-date">March 12, 2024</span>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </div>
+        
+        <div class="post-card">
+          <div class="post-category">Simple Pleasures</div>
+          <h3 class="post-title">Why I Stopped Buying Expensive Things</h3>
+          <p class="post-excerpt">The most luxurious happiness I've found comes from simple moments - a sunset walk, a good book, or a friend's genuine laugh. These cost nothing but are priceless...</p>
+          <div class="post-meta">
+            <span class="post-date">March 8, 2024</span>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </div>
+        
+        <div class="post-card">
+          <div class="post-category">Hard-Won Joy</div>
+          <h3 class="post-title">The Luxury of Mental Health</h3>
+          <p class="post-excerpt">For many, happiness is a luxury that requires significant investment - therapy, medication, time off work. The cost of mental health care shouldn't be a barrier to joy...</p>
+          <div class="post-meta">
+            <span class="post-date">March 5, 2024</span>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </div>
+        
+        <div class="post-card">
+          <div class="post-category">Daily Gratitude</div>
+          <h3 class="post-title">Finding Luxury in the Ordinary</h3>
+          <p class="post-excerpt">The most luxurious happiness often hides in plain sight - a warm bed, clean water, the ability to read. Gratitude transforms ordinary moments into extraordinary gifts...</p>
+          <div class="post-meta">
+            <span class="post-date">March 1, 2024</span>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </div>
+        
+        <div class="post-card">
+          <div class="post-category">Perspective</div>
+          <h3 class="post-title">When Happiness Feels Out of Reach</h3>
+          <p class="post-excerpt">Sometimes happiness feels like a luxury we can't afford. Depression, anxiety, life circumstances can make joy seem impossible. But even in darkness, small moments of light exist...</p>
+          <div class="post-meta">
+            <span class="post-date">February 28, 2024</span>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories">
+      <h2 class="section-title">Categories</h2>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-icon">💎</div>
+          <h3 class="category-title">Free Joy</h3>
+          <p class="category-desc">Happiness that costs nothing but means everything</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">💰</div>
+          <h3 class="category-title">Costly Peace</h3>
+          <p class="category-desc">The investments we make in our happiness</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">🌅</div>
+          <h3 class="category-title">Simple Pleasures</h3>
+          <p class="category-desc">Finding luxury in everyday moments</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">🧠</div>
+          <h3 class="category-title">Mental Health</h3>
+          <p class="category-desc">The luxury of psychological well-being</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">🙏</div>
+          <h3 class="category-title">Gratitude</h3>
+          <p class="category-desc">Appreciating what we already have</p>
+        </div>
+        
+        <div class="category-card">
+          <div class="category-icon">💭</div>
+          <h3 class="category-title">Perspective</h3>
+          <p class="category-desc">How we view happiness and its accessibility</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2 class="section-title">About This Blog</h2>
+      <div class="about-placeholder">
+        <h3>Exploring the Contradiction</h3>
+        <p>This blog exists in the space between happiness as a fundamental right and happiness as a precious luxury. It's about recognizing that joy can be both freely given and hard-won, both simple and complex, both guaranteed and elusive.</p>
+        <div class="happiness-quote">
+          "Happiness is the luxury of being able to choose what brings you joy, and the privilege of having the resources to pursue it."
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <h3>Join the Conversation</h3>
+      <p>Subscribe to explore the many facets of happiness - from the simple pleasures to the costly investments that bring us joy. ✨</p>
+      <form class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email for thoughtful reflections" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 The Luxury of Happiness. Exploring the beautiful contradiction of joy.</p>
+        <p>✨ Happiness is both a right and a luxury - let's explore both ✨</p>
+        <div class="social-links">
+          <a href="#" class="social-link">📱</a>
+          <a href="#" class="social-link">🐦</a>
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">✍️</a>
+        </div>
+      </div>
+    </footer>
   </div>
 </body>
 </html> 
